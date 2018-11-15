@@ -8,6 +8,7 @@
           :class="[{currentPage:btn == currentPage},'pagebtn']">
     {{btn}}
   </button>
+  <button v-if="jduges" class="pagebtn">......</button>
   <button @click="changeBtn">下一页</button>
 </div>
 </template>
@@ -19,7 +20,7 @@
         name: "Pagination",
       data: function(){
           return {
-            pagebtns:[1,2,3,4,5,'......'],
+            pagebtns:[1,2,3,4,5],
             currentPage:1,
             jduge:false
           }
@@ -27,7 +28,7 @@
       methods:{
         changeBtn(page){
           //点击上一页，下一页,首页
-          if(typeof page != 'number'){
+          if(typeof page != 'number' ){
             switch(page.target.innerText){
               case '上一页':
                 $('button.currentPage').prev().click();
@@ -47,8 +48,10 @@
           this.currentPage = page;
           if(page>4){
             this.jduge = true;
+            this.jduges = false
           }else{
             this.jduge = false;
+            this.jduges = true
           }
           if(page == this.pagebtns[4] ){
             this.pagebtns.shift();//移除第一个元素
@@ -59,7 +62,6 @@
               //移除最后一个数字
             this.pagebtns.splice(5,1);
           }
-          debugger
           this.$emit('handleList',this.currentPage);
         }
       }

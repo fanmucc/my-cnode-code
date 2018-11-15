@@ -94,7 +94,7 @@
   .autherinfo {
     width: 328px;
     float: right;
-    margin-top: 0;
+    margin-top: 15px;
   }
   li{
     padding: 3px 0 ;

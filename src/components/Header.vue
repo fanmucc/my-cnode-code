@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-        <a href="#" class="imgHref"><img src="https://static2.cnodejs.org/public/images/cnodejs_light.svg" alt=""></a>
+        <router-link :to="{name:'root'}"><img src="https://static2.cnodejs.org/public/images/cnodejs_light.svg" alt=""></router-link>
         <!-- <input type="text"> -->
         <ul>
             <li><a href="#">首页</a> </li>

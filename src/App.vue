@@ -30,7 +30,6 @@ export default {
 }
 #app {
     display: grid;
-    grid-template-rows: 5% 90% 5%;
     background: #e1e1e1;
 }
 </style>
