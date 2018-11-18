@@ -6,7 +6,6 @@
     <main>
       <router-view name="SlideBar"></router-view>
       <router-view name='main'></router-view>
-      
     </main>
   </div>
 </template>

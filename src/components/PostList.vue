@@ -9,11 +9,7 @@
     <ul>
       <li>
         <div class="toobar">
-          <span>全部</span>
-          <span>精华</span>
-          <span>分享</span>
-          <span>问答</span>
-          <span>招聘</span>
+          <span v-for="(item,index) in anav" :class="{navBcg:index == acIndex }" @click='navbackg(index)'>{{item.name}}</span>
         </div>
       </li>
       <li v-for="post in posts">
@@ -65,7 +61,16 @@
           return {
             isLoading:false,
             posts:[],//代表页面的列表数组
-            postpage:1
+            postpage:1,
+            back:true,
+            acIndex:0,
+            anav:[
+              {index:0,name:"全部"},
+              {index:1,name:"精华"},
+              {index:2,name:"分享"},
+              {index:3,name:"问答"},
+              {index:4,name:"招聘"},
+            ]
           }
       },
       components:{
@@ -91,6 +96,10 @@
         renderList(value){
           this.postpage = value;
           this.getData();
+        },
+        navbackg(index) {
+          this.acIndex =  index;
+          console.log(index)
         }
       },
       beforeMount(){
@@ -107,13 +116,16 @@
   .posts {
     margin-top: 10px;
   }
+  .toobar .navBcg {
+    background: #80bd01;
+    color: #fff;
+  }
 
   .PostList img {
     height: 30px;
     width: 30px;
     vertical-align: middle;
   }
-
   ul {
     list-style: none;
     width: 100%;
@@ -219,6 +231,7 @@
     text-align: center;
     padding-top: 300px;
   }
+ 
 </style>
 
 
