@@ -54,6 +54,7 @@
 </template>
 
 <script>
+// https://cnodejs.org/api/v1/topics?tab=good  精华贴
   import pagination from './Pagination'
     export default {
         name: "PostList",
@@ -70,22 +71,25 @@
               {index:2,name:"分享"},
               {index:3,name:"问答"},
               {index:4,name:"招聘"},
-            ]
+            ],
+            aaa:20,
+            name:''
           }
+            
       },
       components:{
         pagination
       },
       methods:{
           getData(){
-            this.$http.get('https://cnodejs.org/api/v1/topics',{
+            this.$http.get(`https://cnodejs.org/api/v1/topics?tab=${this.name}`,{
               params:{
                 page:this.postpage,
                 limit:20
               }
             })
               .then(res=>{
-                this.isLoading = false; //加载成功，去除动画
+                this.isLoading = false; //加载成功，去除动画 
                 this.posts = res.data.data;
               })
               .catch(function (err) {
@@ -99,13 +103,29 @@
         },
         navbackg(index) {
           this.acIndex =  index;
-          console.log(index)
+          if(index == '0') {
+             this.name = ''
+          }else if (index =='1') {
+             this.name ='good'
+          }else if(index == '2') {
+             this.name ='share'
+          }else if(index == '3') {
+             this.name ='ask'
+          }else if(index == '4') {
+             this.name ='job'
+          }else return;
+          this.getData();
         }
       },
       beforeMount(){
         this.isLoading = true;//加载成功之前显示加载动画
         this.getData();//在页面加载之前获取数据
-      }
+      },
+      // watch:{
+      //     '$route'(to,from){
+      //       this.getData()
+      //     }
+      // }
     }
 </script>
 
