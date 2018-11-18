@@ -138,7 +138,9 @@
   }
   .toobar .navBcg {
     background: #80bd01;
+    padding: 5px 10px;
     color: #fff;
+    border-radius: 5px;
   }
 
   .PostList img {
